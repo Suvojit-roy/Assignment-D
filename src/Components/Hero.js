@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import {CopyToClipboard} from 'react-copy-to-clipboard' 
 import styled from "styled-components";
 import { TextHeading } from "../Assets/Css/cssProducts";
 import { Desc } from "../Assets/Css/cssProductcard";
 import Cross from "../Assets/Images/cross.png";
-import '../Assets/Css/dropdown.css'
+import "../Assets/Css/dropdown.css";
 
 export const Colordiv = styled.div`
   background: white;
@@ -124,22 +125,31 @@ const Downloadbtn = styled.div`
   border-radius: 4px;
 `;
 
+//   background: #f2f2f2;
+//   border-radius: 4px;
+//   width: 43%;
+//   height: 60px;
+//   color: #1a181e;
+//   font-style: normal;
+//   font-weight: normal;
+//   font-size: 0.95rem;
+//   line-height: 22px;
+//   text-align: left;
+//   padding: 0.2rem 1rem;
+//   margin-top: 1.6rem;
+//   @media (max-width: 1100px) {
+//     width: 40%;
+//   }
 const Slogancard = styled.div`
   background: #f2f2f2;
-  border-radius: 4px;
-  width: 43%;
-  height: 60px;
-  color: #1a181e;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 0.95rem;
-  line-height: 22px;
+  height: 6rem;
+  width: 45%;
+  background: green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
   text-align: left;
-  padding: 0.2rem 1rem;
-  margin-top: 1.6rem;
-  @media (max-width: 1100px) {
-    width: 40%;
-  }
 `;
 
 const Slogans = styled.div`
@@ -176,6 +186,14 @@ const sloganarr = [
 const Hero = () => {
   const [val, setVal] = useState("");
   const [isShown, setIsShown] = useState(false);
+  const [copy,setCopied]=useState(false);
+
+  useEffect(()=>{
+      setTimeout(function () {
+          setIsShown(false);
+        }, 900);
+  },[isShown])
+  
 
   return (
     <Colordiv>
@@ -206,13 +224,40 @@ const Hero = () => {
           </SloganHeadingdiv>
           <Slogans>
             {sloganarr.map((text) => (
-              <div class="dropdownfilter">
-              <button class="dropbtnfilter">Last 7 days<div className="downbtn"></div></button>
-              <div class="dropdown-contentfilter">
-                <div>Click to copy</div>
-                {/* <a href="#">Link 3</a> */}
+                <CopyToClipboard text={text} onMouseLeave={()=>setIsShown(false)} onCopy={() => {setCopied(true);setIsShown(true)}}>
+                <div
+                class="dropdownfilter"
+                style={{
+                  height: "4rem",
+                  width: "45%",
+                  background: "#f2f2f2",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginTop: "1.6rem",
+                  textAlign: "left",
+                }}
+              >
+                <button
+                  style={{
+                    width: "100%",
+                    padding: "0.2rem 1rem",
+                    textAlign: "left",
+                  }}
+                  class="dropbtnfilter"
+                >
+                  {text}
+                  <div className="downbtn"></div>
+                </button>
+                <div class="dropdown-contentfilter">
+                  <div>Click to copy</div>
+                </div>
+                {isShown&&<div class="dropdown-contentfilter" style={{marginTop:"4rem"}}>
+                  <div>Copied!</div>
+                </div>}
               </div>
-            </div>
+              </CopyToClipboard>
+              
             ))}
           </Slogans>
         </Slogandiv>
@@ -222,3 +267,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
