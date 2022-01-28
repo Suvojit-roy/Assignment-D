@@ -10,4 +10,18 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+    font-family:GalanoGrotesque;
 }
+
+@font-face {
+  font-family: "GalanoGrotesque";
+  src: local("GalanoGrotesque"),
+   url("./Fonts/galanogrotesque-regular.otf") format("truetype");
+  font-weight: bold;
+  }
+@font-face {
+  font-family: "GalanoGrotesquesemibold";
+  src: local("GalanoGrotesquesemibold"),
+   url("./Fonts/galanogrotesque-semibold.otf") format("truetype");
+  font-weight: bold;
+  }
