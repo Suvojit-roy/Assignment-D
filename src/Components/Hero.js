@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import {
   Colordiv,
@@ -21,6 +21,7 @@ import { Desc } from "../Assets/Css/cssProductcard";
 import Cross from "../Assets/Images/cross.png";
 import "../Assets/Css/dropdown.css";
 import Pagination from "./Pagination";
+import Pagination2 from "./Pagination2";
 
 const sloganarr = [
   "There is no Sore it will Not Heal, No cool it will not Subdue.",
@@ -131,20 +132,46 @@ const sloganarr = [
   "Review the facts cool is the best.",
   "There is no Sore it will Not Heal, No cool it will not Subdue.",
   "Review the facts cool is the best.6",
+  "There is no Sore it will Not Heal, No cool it will not Subdue.",
+  "Review the facts cool is the best.",
+  "There is no Sore it will Not Heal, No cool it will not Subdue.",
+  "Review the facts cool is the best.",
+  "There is no Sore it will Not Heal, No cool it will not Subdue.",
+  "Review the facts cool is the best.",
+  "There is no Sore it will Not Heal, No cool it will not Subdue.",
+  "Review the facts cool is the best.",
+  "There is no Sore it will Not Heal, No cool it will not Subdue.",
+  "Review the facts cool is the best.",
+  "There is no Sore it will Not Heal, No cool it will not Subdue.",
+  "Review the facts cool is the best.",
+  "There is no Sore it will Not Heal, No cool it will not Subdue.",
+  "Review the facts cool is the best.",
+  "There is no Sore it will Not Heal, No cool it will not Subdue.",
+  "Review the facts cool is the best.9",
+  "There is no Sore it will Not Heal, No cool it will not Subdue.",
+  "Review the facts cool is the best.9"
 ];
 
 const Hero = () => {
   const [val, setVal] = useState("");
   const [isShown, setIsShown] = useState(false);
   const [copy, setCopied] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(18);
 
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = sloganarr.slice(indexOfFirstPost, indexOfLastPost);
+  // const indexOfLastPost = currentPage * postsPerPage;
+  // const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  // const currentPosts = sloganarr.slice(indexOfFirstPost, indexOfLastPost);
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  // const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const currentTableData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * postsPerPage;
+    const lastPageIndex = firstPageIndex + postsPerPage;
+    return sloganarr.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage]);
 
   useEffect(() => {
     setTimeout(function () {
@@ -180,7 +207,7 @@ const Hero = () => {
             <Downloadbtn>Download all</Downloadbtn>
           </SloganHeadingdiv>
           <Slogans>
-            {currentPosts.map((text) => (
+            {currentTableData.map((text) => (
               <CopyToClipboard
                 text={text}
                 onMouseLeave={() => setIsShown(false)}
@@ -229,13 +256,21 @@ const Hero = () => {
               <div style={{ width: "10%", color: "white" }}> Prev</div>
             )}
 
-            <Pagination
+            <Pagination2
+              style={{ width: "50%" }}
+              className="pagination-bar"
+              currentPage={currentPage}
+              totalCount={sloganarr.length}
+              pageSize={postsPerPage}
+              onPageChange={(page) => setCurrentPage(page)}
+            />
+            {/* <Pagination
               style={{ width: "50%" }}
               postsPerPage={postsPerPage}
               totalPosts={sloganarr.length}
               currentPage={currentPage}
               paginate={paginate}
-            />
+            /> */}
             {currentPage !== Math.ceil(sloganarr.length / postsPerPage) ? (
               <Pagibtn
                 style={{ textAlign: "right" }}
