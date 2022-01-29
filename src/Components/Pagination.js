@@ -1,4 +1,5 @@
 import React from "react";
+import { Paginav,Pagiactive } from "../Assets/Css/cssHero";
 
 const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
   const pageNumbers = [];
@@ -9,45 +10,27 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
   }
   return (
     <nav>
-      <ul
-        className="pagination"
-        style={{
-          textDecoration: "none",
-          display: "flex",
-          color: "white",
-          paddingLeft: "0",
-        }}
+      <Paginav
       >
         {pageNumbers.map((number) => (
           <>
             {number===currentPage?
             <div>
-            <div key={number} className="page-item">
-              <a
-                style={{
-                  textDecoration: "none",
-                  width:"1rem",
-                  height:"1rem",
-                  padding: ".4rem .6rem",
-                  border:"1px solid #146EB4",
-                  background:"#146EB4",
-                  borderRadius:"80%",
-                  color:"white"
-                //   padding:"0.6rem"
-                }}
+            <div key={number}>
+              <Pagiactive
                 onClick={(event) => {
                   event.preventDefault();
                   paginate(number);
                 }}
                 href="!#"
-                className="page-link"
+                
               >
                 {number}
-              </a>
+              </Pagiactive>
             </div>
           </div>
             :<div>
-              <div key={number} className="page-item">
+              <div key={number} >
                 <a
                   style={{
                     textDecoration: "none",
@@ -59,7 +42,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
                     paginate(number);
                   }}
                   href="!#"
-                  className="page-link"
+                  
                 >
                   {number}
                 </a>
@@ -67,7 +50,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
             </div>}
           </>
         ))}
-      </ul>
+      </Paginav>
     </nav>
   );
 };

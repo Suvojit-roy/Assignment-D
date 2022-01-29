@@ -19,6 +19,14 @@
 .dropdownfilter {
   position: relative;
   display: inline-block;
+  height: 4rem;
+                    width: 45%;
+                    background: #f2f2f2;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-top: 1.6rem;
+                    text-align: left;
 }
 
 .dropdown-contentfilter {
@@ -31,6 +39,11 @@
   min-width: 7rem;
   height: 2rem;
   z-index: 1;
+  font-family: GalanoGrotesque;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 20px;
   font-style: normal;
   background: black;
   border-radius: 1rem;
@@ -73,4 +86,58 @@
 .dropdownfilter:hover .dropbtnfilter {
   background: transparent;
 }
+.dropdown-contentfilterc {
+  display: none;
+  position: absolute;
+  top: 30%;
+  font-family: GalanoGrotesque;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 20px;
+  margin-right:1rem;
+  right: 100%;
+  background: transparent;
+  min-width: 5rem;
+  height: 2rem;
+  z-index: 1;
+  font-style: normal;
+  background: black;
+  border-radius: 1rem;
+  background: #4d4d4d;
+  border-radius: 4px;
+    text-align:center;
+
+  /* height:10rem;  */
+}
+
+.dropdown-contentfilterc a {
+  color: white;
+  padding-left: 1rem;
+  text-decoration: none;
+  display: block;
+  font-style: normal;
+  text-align: left;
+  font-style: normal;
+  font-weight: normal;
+  width: max-content;
+  font-family: Century Gothic;
+  height: fit-content;
+  margin-top: 1rem;
+
+  
+}
+
+.dropdown-contentfilterc a:hover {
+  background: transparent;
+}
+
+.dropdownfilter:hover .dropdown-contentfilterc  {
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:white
+}
+
 
