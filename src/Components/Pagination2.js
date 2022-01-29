@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 // import classnames from 'classnames';
-import { usePagination, DOTS } from './usePagination';
-import '../Assets/Css/pagination.css';
-const Pagination2 = props => {
+import { usePagination, DOTS } from "./usePagination";
+import "../Assets/Css/pagination.css";
+const Pagination2 = (props) => {
   const {
     onPageChange,
     totalCount,
@@ -12,12 +12,12 @@ const Pagination2 = props => {
     // className
   } = props;
 
-  console.log(props)
+  console.log(props);
   const paginationRange = usePagination({
     currentPage,
     totalCount,
     siblingCount,
-    pageSize
+    pageSize,
   });
 
   console.log(paginationRange);
@@ -37,30 +37,23 @@ const Pagination2 = props => {
 
   let lastPage = paginationRange[paginationRange.length - 1];
   return (
-    <ul  className='pagination-container' >
-       {/* Left navigation arrow */}
-      
-      {paginationRange.map(pageNumber => {
-         
-        // If the pageItem is a DOT, render the DOTS unicode character
+    <ul className="pagination-container">
+      {paginationRange.map((pageNumber) => {
         if (pageNumber === DOTS) {
           return <li className="pagination-item dots">&#8230;</li>;
         }
-		
-        // Render our Page Pills
+
         return (
-          
-          <li className = {`pagination-item ${pageNumber===currentPage ? "selected" : ""}`}
-            // className={classnames('pagination-item', {
-            //   selected: pageNumber === currentPage
-            // })}
+          <li
+            className={`pagination-item ${
+              pageNumber === currentPage ? "selected" : ""
+            }`}
             onClick={() => onPageChange(pageNumber)}
           >
             {pageNumber}
           </li>
         );
       })}
-
     </ul>
   );
 };

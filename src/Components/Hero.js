@@ -149,21 +149,15 @@ const sloganarr = [
   "There is no Sore it will Not Heal, No cool it will not Subdue.",
   "Review the facts cool is the best.9",
   "There is no Sore it will Not Heal, No cool it will not Subdue.",
-  "Review the facts cool is the best.9"
+  "Review the facts cool is the best.9",
 ];
 
 const Hero = () => {
   const [val, setVal] = useState("");
   const [isShown, setIsShown] = useState(false);
   const [copy, setCopied] = useState(false);
-  // const [currentPage, setCurrentPage] = useState(1);
+
   const [postsPerPage, setPostsPerPage] = useState(18);
-
-  // const indexOfLastPost = currentPage * postsPerPage;
-  // const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  // const currentPosts = sloganarr.slice(indexOfFirstPost, indexOfLastPost);
-
-  // const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const [currentPage, setCurrentPage] = useState(1);
 
